@@ -127,11 +127,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBasicInfo() {
         ((TextView) findViewById(R.id.name)).setText(TextUtils.isEmpty(basicInfo.name)
-                                                             ? "Your name"
-                                                             : basicInfo.name);
+                ? "Your name"
+                : basicInfo.name);
         ((TextView) findViewById(R.id.email)).setText(TextUtils.isEmpty(basicInfo.email)
-                                                             ? "Your email"
-                                                             : basicInfo.email);
+                ? "Your email"
+                : basicInfo.email);
 
         ImageView userPicture = (ImageView) findViewById(R.id.user_picture);
         if (basicInfo.imageUri != null) {
@@ -237,29 +237,33 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadData() {
         BasicInfo savedBasicInfo = ModelUtils.read(this,
-                                                   MODEL_BASIC_INFO,
-                                                   new TypeToken<BasicInfo>(){});
+                MODEL_BASIC_INFO,
+                new TypeToken<BasicInfo>() {
+                });
         basicInfo = savedBasicInfo == null ? new BasicInfo() : savedBasicInfo;
 
         List<Education> savedEducation = ModelUtils.read(this,
-                                                         MODEL_EDUCATIONS,
-                                                         new TypeToken<List<Education>>(){});
+                MODEL_EDUCATIONS,
+                new TypeToken<List<Education>>() {
+                });
         educations = savedEducation == null ? new ArrayList<Education>() : savedEducation;
 
         List<Experience> savedExperience = ModelUtils.read(this,
-                                                           MODEL_EXPERIENCES,
-                                                           new TypeToken<List<Experience>>(){});
+                MODEL_EXPERIENCES,
+                new TypeToken<List<Experience>>() {
+                });
         experiences = savedExperience == null ? new ArrayList<Experience>() : savedExperience;
 
         List<Project> savedProjects = ModelUtils.read(this,
-                                                     MODEL_PROJECTS,
-                                                     new TypeToken<List<Project>>(){});
+                MODEL_PROJECTS,
+                new TypeToken<List<Project>>() {
+                });
         projects = savedProjects == null ? new ArrayList<Project>() : savedProjects;
     }
 
     public static String formatItems(List<String> items) {
         StringBuilder sb = new StringBuilder();
-        for (String item: items) {
+        for (String item : items) {
             sb.append(' ').append('-').append(' ').append(item).append('\n');
         }
         if (sb.length() > 0) {
